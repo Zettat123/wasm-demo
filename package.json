@@ -1,6 +1,6 @@
 {
   "name": "Template",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A React web template",
   "main": "index.js",
   "scripts": {
