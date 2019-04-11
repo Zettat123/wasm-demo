@@ -1,4 +1,4 @@
-# react-app-template
+# wasm-demo
 
 ```
 npm i
