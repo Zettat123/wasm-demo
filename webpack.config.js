@@ -1,23 +1,26 @@
-const path = require("path")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    app: "./src/index.js"
+    app: './src/index.js',
   },
-  devtool: "inline-source-map",
+  node: {
+    fs: 'empty',
+  },
+  devtool: 'inline-source-map',
   devServer: {
-    contentBase: "./dist",
-    port: 3000
+    contentBase: './dist',
+    port: 3000,
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
-    })
+      template: './src/index.html',
+    }),
   ],
   output: {
-    filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist")
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
@@ -25,30 +28,35 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.scss$/,
         include: /src/,
         use: [
-          "style-loader",
+          'style-loader',
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               modules: true,
               importLoaders: 1,
-              localIdentName: "[name]-[local]-[hash:base64:4]"
-            }
+              localIdentName: '[name]-[local]-[hash:base64:4]',
+            },
           },
           {
-            loader: "postcss-loader"
+            loader: 'postcss-loader',
           },
           {
-            loader: "sass-loader"
-          }
-        ]
-      }
-    ]
-  }
+            loader: 'sass-loader',
+          },
+        ],
+      },
+      {
+        test: /\.wasm$/,
+        type: 'javascript/auto', // ← !!
+        loader: 'file-loader',
+      },
+    ],
+  },
 }
