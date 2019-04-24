@@ -3,24 +3,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    app: './src/index.js'
   },
   node: {
-    fs: 'empty',
+    fs: 'empty'
   },
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
-    port: 3000,
+    port: 3000
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-    }),
+      template: './src/index.html'
+    })
   ],
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
@@ -28,8 +28,8 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-        },
+          loader: 'babel-loader'
+        }
       },
       {
         test: /\.scss$/,
@@ -41,22 +41,22 @@ module.exports = {
             options: {
               modules: true,
               importLoaders: 1,
-              localIdentName: '[name]-[local]-[hash:base64:4]',
-            },
+              localIdentName: '[name]-[local]-[hash:base64:4]'
+            }
           },
           {
-            loader: 'postcss-loader',
+            loader: 'postcss-loader'
           },
           {
-            loader: 'sass-loader',
-          },
-        ],
+            loader: 'sass-loader'
+          }
+        ]
       },
-      // {
-      //   test: /\.wasm$/,
-      //   type: 'javascript/auto', // ← !!
-      //   loader: 'file-loader',
-      // },
-    ],
-  },
+      {
+        test: /\.wasm$/,
+        type: 'javascript/auto', // ← !!
+        loader: 'file-loader'
+      }
+    ]
+  }
 }
